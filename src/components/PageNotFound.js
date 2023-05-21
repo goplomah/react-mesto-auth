@@ -1,5 +1,7 @@
 import useSound from 'use-sound';
 import blinking from '../sounds/blink.mp3';
+// import jim from '../images/giphy.gif';
+// import jimRocket from '../images/jim_on_rocket.gif';
 
 
 function PageNotFound() {
@@ -20,6 +22,8 @@ function PageNotFound() {
             </div>
             <h2 className='not-found__title'>Упс...кажется страничка не нашлась)</h2>
             <p className='not-found__text'>К сожалению, запрашиваемая страница не найдена. Возможно, вы перешли по ссылке, в которой была допущена ошибка, или ресурс был удален. Попробуйте перейти на главную страницу</p>
+            {/* <img src={jim} /> */}
+            {/* <img src={jimRocket} /> */}
         </section>
         </>
     );

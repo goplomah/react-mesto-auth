@@ -11,6 +11,7 @@ import AddPlacePopup from "./AddPlacePopup.js";
 import ConfirmPopup from "./ConfirmPopup.js";
 import { Routes, Route } from 'react-router-dom';
 import PageNotFound from "./PageNotFound.js";
+import Login from "./Login.jsx";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -117,8 +118,8 @@ function App() {
               cards={cards}
             />
           } />
-          {/* <Route path="/sign-up" element={<Register />} />
-          <Route path="/sign-in" element={<Login />} /> */}
+          {/* <Route path="/sign-up" element={<Register />} /> */}
+          <Route path="/sign-in" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />

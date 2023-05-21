@@ -22,7 +22,7 @@ function PopupWithForm({
         <h2 className="popup__title">{title}</h2>
         <form className={`form form_type_${name}`} name={name} onSubmit={onSubmit} noValidate>
           {children}
-          <button type="submit" className="form__send form__send">
+          <button type="submit" className="form__send">
             {submitButtonText || "Сохранить"}
           </button>
         </form>
