@@ -9,6 +9,8 @@ import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import ConfirmPopup from "./ConfirmPopup.js";
+import { Routes, Route } from 'react-router-dom';
+import PageNotFound from "./PageNotFound.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -102,16 +104,23 @@ function App() {
     <div className="root">
       <div className="page">
         <Header />
-        <Main
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          onClose={closeAllPopups}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          onCardDelete={handleConfirmDeleteClick}
-          cards={cards}
-        />
+        <Routes>
+          <Route path="/" element={
+            <Main
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onClose={closeAllPopups}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleConfirmDeleteClick}
+              cards={cards}
+            />
+          } />
+          {/* <Route path="/sign-up" element={<Register />} />
+          <Route path="/sign-in" element={<Login />} /> */}
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
         <Footer />
         <EditProfilePopup 
         isOpen={isEditProfilePopupOpen} 
