@@ -21,24 +21,24 @@ function Login() {
 
     return(
         <section className="login">
-            <h2 className="login__title">Вход</h2>
+            <h2 className="form__title">Вход</h2>
             <form className="form form_type_login" onChange={handleSubmit}>
                 <input
                 id="email-input"
                 type="email"
                 name="email"
-                className="form__input form__input_name_email form__input_type_login"
+                className="form__input form__input_name_email form__input_type_dark"
                 placeholder="E-mail"
                 required
                 value={email || ""}
                 onChange={handleChangeEmail}
                 />
-                <span className="form__input-error email-input-error"></span>
+                <span className="form__input-error form__input-error_type_dark email-input-error"></span>
                 <input
                 id="password-input"
                 type="password"
                 name="password"
-                className="form__input form__input_name_password form__input_type_login"
+                className="form__input form__input_name_password form__input_type_dark"
                 placeholder="Пароль"
                 required
                 value={password || ""}
@@ -46,10 +46,10 @@ function Login() {
                 maxLength="200"
                 onChange={handleChangePassword}
                 />
-                <span className="form__input-error password-input-error"></span>
-                <button type="submit" className="login__send">
-                Войти
-                </button>
+                <span className="form__input-error form__input-error_type_dark password-input-error"></span>
+                    <button type="submit" className="form__send_type_dark">
+                    Войти
+                    </button>
             </form>
         </section>
     );

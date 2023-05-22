@@ -12,6 +12,7 @@ import ConfirmPopup from "./ConfirmPopup.js";
 import { Routes, Route } from 'react-router-dom';
 import PageNotFound from "./PageNotFound.js";
 import Login from "./Login.jsx";
+import Register from "./Register.jsx";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -118,7 +119,7 @@ function App() {
               cards={cards}
             />
           } />
-          {/* <Route path="/sign-up" element={<Register />} /> */}
+          <Route path="/sign-up" element={<Register />} />
           <Route path="/sign-in" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

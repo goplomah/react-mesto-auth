@@ -161,7 +161,7 @@
     box-sizing: border-box;
 }
 
-.login__title {
+.form__title {
     font-family: "Inter", "Arial", sans-serif;
     margin: 0;
     font-weight: 900;
@@ -170,17 +170,18 @@
     text-align: center;
 }
 
-.form__input_type_login {
+.form__input_type_dark {
     color: #ccc;
     background-color: #000;
     border-bottom: 1px solid #ccc;
 }
 
-.form__input-error {
+.form__input-error_type_dark {
     margin-top: 0;
+    display: block;
 }
 
-.login__send {
+.form__send_type_dark {
     width: 100%;
     font-weight: 400;
     font-size: 18px;
@@ -195,3 +196,24 @@
     margin-top: 187px;
 }
 
+.register {
+    max-width: 378px;
+    width: 100%;
+    padding: 56px 10px 0;
+    margin: 0 auto;
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+.register__text {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+}
+
+.register__link {
+    text-decoration: none;
+    color: #fff;
+}
