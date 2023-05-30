@@ -1,4 +1,4 @@
-# [mesto-react](https://goplomah.github.io/react-mesto-auth/)
+# [mesto-react-auth](https://goplomah.github.io/react-mesto-auth/)
 
 ![Иллюстрация к проекту](https://github.com/goplomah/react-mesto-auth/blob/main/src/images/preview-for-readme.png)
 
