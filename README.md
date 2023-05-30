@@ -1,8 +1,8 @@
-# [mesto-react](https://goplomah.github.io/mesto-react/)
+# [mesto-react](https://goplomah.github.io/react-mesto-auth/)
 
 ![Иллюстрация к проекту](https://github.com/goplomah/mesto-react/blob/main/src/images/mesto-for-readme.png)
 
-## Проектная работа №11 (продолжение портирования проектной работы №9 на React)
+## Проектная работа №12 (Регистрация и авторизация на React)
 
 ---
 
@@ -44,8 +44,12 @@
 - использование компонентного и функционального подхода при разработке;
 - хуки: useState, useEffect, useRef;
 - применение "поднятия стейта";
-- использование контекста.
+- использование контекста;
+- использование Route & ProtectedRoute;
+- реализация регистрации и аутентификации посредством взаимодействия с api;
+- использование localStorage;
+- использование JWT.
 
 ---
 
-[ приложение можно посмотреть тут](https://goplomah.github.io/mesto-react/)
+[ приложение можно посмотреть тут](https://goplomah.github.io/react-mesto-auth/)

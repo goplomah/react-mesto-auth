@@ -1,5 +1,6 @@
 function Footer() {
-  return <footer className="footer">© 2023 by Maks S.</footer>;
+  const year = new Date().getFullYear();
+  return <footer className="footer">© {year} by Maks S.</footer>;
 }
 
 export default Footer;

@@ -9,14 +9,14 @@ function PageNotFound() {
     return (
         <>
         <section className='not-found'>
-            <div className="container">
+            <div className="not-found__container">
             <div className='blink-lamp' 
             >
             <p className='not-found__code'
             onMouseEnter={() => play()} 
             onMouseLeave={() => stop()}
             >
-                4<span className='not-found__code_blink'>0</span>4
+                4<span className='not-found__code_type_blink'>0</span>4
             </p>
             </div>
             </div>

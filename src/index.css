@@ -1,3 +1,39 @@
+@keyframes animate {
+    0%, 18%, 20%, 50.1%, 60%, 65.1%, 80%, 90.1%, 92%
+    {
+        color: #000;
+        box-shadow: none;
+    }
+    18.1%, 20.1%, 30%, 50%, 60.1%, 65%, 80.1%, 90%, 92.1%, 100%
+    {
+        color: #afa9a9;
+        text-shadow: 
+        0 0 10px #740909,
+        0 0 20px #740909,
+        0 0 40px #740909,
+        0 0 80px #740909,
+        0 0 160px #740909
+    }
+}
+
+@keyframes animate-linear {
+    0%, 30%, 40.1%, 50%, 60.1%, 70%, 90.1%, 95%
+    {
+        color: #000;
+        box-shadow: none 
+    }
+    30.1%, 40%, 50.1%, 60%, 70.1%, 90%, 95.1%, 100%
+    {
+        color: #afa9a9;
+        text-shadow: 
+        0 0 10px #740909,
+        0 0 20px #740909,
+        0 0 40px #740909,
+        0 0 80px #740909,
+        0 0 160px #740909
+    }
+}
+
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/fonts.css);
 @import url(./blocks/html/html.css);
@@ -47,173 +83,26 @@
 @import url(./blocks/form/__input/_type/form__input_type_error.css);
 @import url(./blocks/form/__input-error/form__input-error.css);
 @import url(./blocks/form/__send/_disabled/form__send_disabled.css);
-
-@keyframes animate {
-    0%, 18%, 20%, 50.1%, 60%, 65.1%, 80%, 90.1%, 92%
-    {
-        color: #000;
-        box-shadow: none;
-    }
-    18.1%, 20.1%, 30%, 50%, 60.1%, 65%, 80.1%, 90%, 92.1%, 100%
-    {
-        color: #afa9a9;
-        text-shadow: 
-        0 0 10px #740909,
-        0 0 20px #740909,
-        0 0 40px #740909,
-        0 0 80px #740909,
-        0 0 160px #740909
-    }
-}
-
-@keyframes animate-linear {
-    0%, 30%, 40.1%, 50%, 60.1%, 70%, 90.1%, 95%
-    {
-        color: #000;
-        box-shadow: none 
-    }
-    30.1%, 40%, 50.1%, 60%, 70.1%, 90%, 95.1%, 100%
-    {
-        color: #afa9a9;
-        text-shadow: 
-        0 0 10px #740909,
-        0 0 20px #740909,
-        0 0 40px #740909,
-        0 0 80px #740909,
-        0 0 160px #740909
-    }
-}
-
-.not-found {
-    box-sizing: border-box;
-    max-width: 880px;
-    width: 100%;
-    margin: 75px auto 0;
-    flex-grow: 1;
-}
-
-.container {
-    padding: 0 10px;
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-.blink-lamp {
-    background-image: url(./images/bulb.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: calc(300 / 550 * 100%);
-    width: 100%;
-    height: 0;
-    display: flex;
-    position: relative;
-}
-
-.not-found__code {
-    margin: 0;
-    font-size: 39px;
-    letter-spacing: 12px;
-    -webkit-box-reflect: below -50px linear-gradient(transparent, #000);
-    animation: animate 5s linear infinite;
-    line-height: normal;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin-right: 16px;
-    font-weight: 600;
-}
-
-.not-found__code_blink {
-    animation: animate-linear 5s linear infinite;
-}
-
-.not-found__title {
-    margin: 70px 0 0;
-    font-size: 26px;
-    text-align: center;
-    padding: 0 10px;
-}
-
-.not-found__text {
-    color: #000;
-    margin: 30px 0 0;
-    text-align: center;
-    transition: 1s linear;
-    padding: 0 15px;
-}
-
-.not-found__title:hover + .not-found__text {
-    color: #fff;
-    transition: 1s linear;
-}
-
-.login {
-    max-width: 378px;
-    width: 100%;
-    padding: 56px 10px 0;
-    margin: 0 auto;
-    flex-grow: 1;
-    box-sizing: border-box;
-}
-
-.form__title {
-    font-family: "Inter", "Arial", sans-serif;
-    margin: 0;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 29px;
-    text-align: center;
-}
-
-.form__input_type_dark {
-    color: #ccc;
-    background-color: #000;
-    border-bottom: 1px solid #ccc;
-}
-
-.form__input-error_type_dark {
-    margin-top: 0;
-    display: block;
-}
-
-.form__send_type_dark {
-    width: 100%;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    text-align: center;
-    color: #000;
-    cursor: pointer;
-    background-color: #fff;
-    height: 50px;
-    border-radius: 2px;
-    border: none;
-    margin-top: 187px;
-}
-
-.register {
-    max-width: 378px;
-    width: 100%;
-    padding: 56px 10px 0;
-    margin: 0 auto;
-    flex-grow: 1;
-    box-sizing: border-box;
-}
-
-.register__text {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 17px;
-    font-weight: 400;
-}
-
-.register__link {
-    text-decoration: none;
-    color: #fff;
-}
+@import url(./blocks/not-found/not-found.css);
+@import url(./blocks/not-found/__container/not-found__container.css);
+@import url(./blocks/not-found/__code/not-found__code.css);
+@import url(./blocks/not-found/_type/not-found__code_type_blink.css);
+@import url(./blocks/not-found/__title/not-found__title.css);
+@import url(./blocks/not-found/__text/not-found__text.css);
+@import url(./blocks/form/__title/form__title.css);
+@import url(./blocks/login/login.css);
+@import url(./blocks/register/register.css);
+@import url(./blocks/register/__text/register__text.css);
+@import url(./blocks/register/__link/register__link.css);
+@import url(./blocks/popup/__info-img/popup__info-img.css);
+@import url(./blocks/popup/__container/_type/popup__container_type_tooltip.css);
+@import url(./blocks/popup/__title/_type/popup__title_type_tooltip.css);
+@import url(./blocks/blink-lamp/blink-lamp.css);
+@import url(./blocks/form/__input/_type/form__input_type_dark.css);
+@import url(./blocks/form/__input-error/_type/form__input-error_type_dark.css);
+@import url(./blocks/form/__send/_type/form__send_type_dark.css);
+@import url(./blocks/header/__email/header__email.css);
+@import url(./blocks/header/__nav/header__nav.css);
+@import url(./blocks/header/__link/header__link.css);
+@import url(./blocks/hover/_type/hover_type_dark.css);
+@import url(./blocks/register/__link/_type/register__link_type_hover.css);
