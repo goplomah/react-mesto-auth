@@ -1,6 +1,6 @@
 # [mesto-react](https://goplomah.github.io/react-mesto-auth/)
 
-![Иллюстрация к проекту](https://github.com/goplomah/mesto-react/blob/main/src/images/mesto-for-readme.png)
+![Иллюстрация к проекту](https://github.com/goplomah/mesto-react/blob/main/src/images/preview-for-readme.png)
 
 ## Проектная работа №12 (Регистрация и авторизация на React)
 
@@ -51,5 +51,10 @@
 - использование JWT.
 
 ---
+
+### Будущие доработки
+
+- реализация валидации форм;
+- адаптив для мобильной версии.
 
 [ приложение можно посмотреть тут](https://goplomah.github.io/react-mesto-auth/)
