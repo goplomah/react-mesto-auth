@@ -16,6 +16,7 @@ import Register from "./Register.jsx";
 import ProtectedRoute from "./ProtectedRoute.js";
 import InfoTooltip from "./InfoTooltip.jsx";
 import authorization from "../utils/Authorization.js";
+import Scroll from "./ScrollToTop.jsx";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -178,6 +179,7 @@ function App() {
       <div className="root">
         <div className="page">
           <Header onExit={handleExit} email={email}/>
+          <Scroll />
           <Routes>
             <Route
               path="/"
@@ -196,7 +198,7 @@ function App() {
                 />
               }
             />
-.            <Route path="/sign-up" element={<Register onRegister={handleRegister}/>} />
+            <Route path="/sign-up" element={<Register onRegister={handleRegister}/>} />
             <Route path="/sign-in" element={<Login onLogin={handleLogin}/>} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
