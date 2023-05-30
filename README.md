@@ -1,6 +1,6 @@
 # [mesto-react](https://goplomah.github.io/react-mesto-auth/)
 
-![Иллюстрация к проекту](https://github.com/goplomah/mesto-react/blob/main/src/images/preview-for-readme.png)
+![Иллюстрация к проекту](https://github.com/goplomah/react-mesto-auth/blob/main/src/images/preview-for-readme.png)
 
 ## Проектная работа №12 (Регистрация и авторизация на React)
 
