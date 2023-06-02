@@ -1,5 +1,5 @@
-import SuccessImage from '../images/popup_success.svg';
-import FailImage from '../images/popup_fail.svg';
+import successImage from '../images/popup_success.svg';
+import failImage from '../images/popup_fail.svg';
 import usePopupClose from '../hooks/usePopupClose';
 
 function InfoTooltip({isOpen, onClose, isSuccessReg}) {
@@ -15,7 +15,7 @@ return(
           aria-label={"кнопка закрытия модального окна"}
           onClick={onClose}
         ></button>
-        <img src={isSuccessReg ? SuccessImage : FailImage} alt="крестика или галочки в зависимости от ответа сервера." className="popup__info-img" />
+        <img src={isSuccessReg ? successImage : failImage} alt="крестика или галочки в зависимости от ответа сервера." className="popup__info-img" />
         <h2 className="popup__title popup__title_type_tooltip">{isSuccessReg ? "Вы успешно зарегистрировались!" : "Что-то пошло не так! Попробуйте ещё раз."}</h2>
         </div>
     </div>

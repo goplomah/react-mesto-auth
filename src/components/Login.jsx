@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import Spinner from './Spinner';
 
-function Login({onLogin}) {
+function Login({onLogin, isLoading}) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -47,8 +48,8 @@ function Login({onLogin}) {
                 onChange={handleChangePassword}
                 />
                 <span className="form__input-error form__input-error_type_dark password-input-error"></span>
-                    <button type="submit" className="form__send_type_dark hover_type_dark">
-                    Войти
+                    <button type="submit" className={`form__send form__send_type_dark hover_type_dark ${isLoading && 'form__send_disabled'}`}>
+                    {isLoading ? <Spinner /> : 'Войти'}
                     </button>
             </form>
         </section>

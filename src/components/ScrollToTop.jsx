@@ -17,7 +17,7 @@ function Scroll() {
     }, []);
 
     return(
-        <button className={`to-top ${scroll>500 ? "to-top_active" : ""}`} onClick={handleScrollToTop}></button>
+        <button className={`to-top ${scroll>500 && "to-top_active"}`} onClick={handleScrollToTop}></button>
         );
 }
 

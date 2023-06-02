@@ -34,6 +34,15 @@
     }
 }
 
+@keyframes preloader-rotate {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/fonts.css);
 @import url(./blocks/html/html.css);
@@ -115,3 +124,6 @@
 @import url(./blocks/menu/__line-1/menu__line-1.css);
 @import url(./blocks/menu/__line-2/menu__line-2.css);
 @import url(./blocks/menu/__line-3/menu__line-3.css);
+@import url(./blocks/preloader/preloader.css);
+@import url(./blocks/rotate/rotate.css);
+@import url(./blocks/spinner/spinner.css);

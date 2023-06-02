@@ -32,6 +32,7 @@ function App() {
   const [isSuccessReg, setIsSuccessReg] = useState(false);
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCatchError = (err) => {
     console.log(`Упс...Ошибка получения данных с сервера: ${err}`);
@@ -89,43 +90,47 @@ function App() {
   };
 
   const handleCardDelete = (card) => {
+    setIsLoading(true);
     api
       .removeCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
         closeAllPopups();
       })
-      .catch(handleCatchError);
+      .catch(handleCatchError).finally(() => {setIsLoading(false);});
   };
 
   const handleUpdateUser = ({ name, about }) => {
+    setIsLoading(true);
     api
       .setUserInfo({ name, job: about })
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch(handleCatchError);
+      .catch(handleCatchError).finally(() => {setIsLoading(false);});
   };
 
   const handleUpdateAvatar = ({ avatar }) => {
+    setIsLoading(true);
     api
       .updateAvatar({ avatar })
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch(handleCatchError);
+      .catch(handleCatchError).finally(() => {setIsLoading(false);});
   };
 
   const handleAddPlaceSubmit = ({ name, link }) => {
+    setIsLoading(true);
     api
       .addCard({ title: name, link })
       .then((res) => {
         setCards([res, ...cards]);
         closeAllPopups();
       })
-      .catch(handleCatchError);
+      .catch(handleCatchError).finally(() => {setIsLoading(false);});
   };
 
   useEffect(() => {
@@ -144,19 +149,22 @@ function App() {
   }, [isLoggedIn])
 
   const handleRegister = (password, email) => {
+    setIsLoading(true);
     authorization.registration(password, email).then((res) => {
       if(res) {
       setIsSuccessReg(true);
-      setIsInfoTooltipOpen(true);
       navigate("/sign-in", {replace: true});
     }
     }).catch(() => {
       setIsSuccessReg(false);
+    }).finally(() => {
+      setIsLoading(false);
       setIsInfoTooltipOpen(true);
-    }) 
+    });
   }
 
   const handleLogin = (password, email) => {
+    setIsLoading(true);
     authorization.login(password, email).then(res => {
       localStorage.setItem('jwt', res.token);
       setIsLoggedIn(true);
@@ -164,7 +172,7 @@ function App() {
     }).catch(err => {
       setIsSuccessReg(false);
       setIsInfoTooltipOpen(true);
-    })
+    }).finally(() => {setIsLoading(false);});
   }
 
   const handleExit = () => {
@@ -198,8 +206,8 @@ function App() {
                 />
               }
             />
-            <Route path="/sign-up" element={<Register onRegister={handleRegister}/>} />
-            <Route path="/sign-in" element={<Login onLogin={handleLogin}/>} />
+            <Route path="/sign-up" element={<Register onRegister={handleRegister} isLoading={isLoading}/>} />
+            <Route path="/sign-in" element={<Login onLogin={handleLogin} isLoading={isLoading}/>} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
           <Footer />
@@ -207,11 +215,13 @@ function App() {
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
+            isLoading={isLoading}
           />
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
             onAddPlace={handleAddPlaceSubmit}
+            isLoading={isLoading}
           />
           <ImagePopup
             name="image"
@@ -223,11 +233,13 @@ function App() {
             isOpen={isConfirmPopupOpen}
             onConfirmDelete={handleCardDelete}
             cardToDelete={cardToDelete}
+            isLoading={isLoading}
           />
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
+            isLoading={isLoading}
           />
           <InfoTooltip
             isOpen={isInfoTooltipOpen}

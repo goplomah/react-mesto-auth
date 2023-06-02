@@ -1,4 +1,5 @@
 import usePopupClose from "../hooks/usePopupClose";
+import Spinner from "./Spinner";
 
 function PopupWithForm({
   title,
@@ -7,7 +8,8 @@ function PopupWithForm({
   isOpen,
   submitButtonText,
   onClose,
-  onSubmit
+  onSubmit,
+  isLoading
 }) {
   usePopupClose(isOpen, onClose);
   return (
@@ -20,10 +22,10 @@ function PopupWithForm({
           onClick={onClose}
         ></button>
         <h2 className="popup__title">{title}</h2>
-        <form className={`form form_type_${name}`} name={name} onSubmit={onSubmit} noValidate>
+        <form className={`form form_type_${name}`} name={name} onSubmit={onSubmit}>
           {children}
-          <button type="submit" className="form__send">
-            {submitButtonText || "Сохранить"}
+          <button type="submit" className={`form__send ${isLoading && 'form__send_disabled'}`}>
+             {isLoading ? <Spinner /> : submitButtonText || "Сохранить"}
           </button>
         </form>
       </div>

@@ -1,7 +1,7 @@
 import PopupWithForm from "./PopupWithForm";
 import { useEffect, useRef } from "react";
 
-function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
+function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, isLoading}) {
     const avatarRef = useRef();
 
     const handleSubmit = (e) => {
@@ -23,6 +23,7 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
           isOpen={isOpen}
           onClose={onClose}
           onSubmit={handleSubmit}
+          isLoading={isLoading}
         >
           <input
             id="avatar-patch-url-input"

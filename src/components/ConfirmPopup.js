@@ -1,6 +1,6 @@
 import PopupWithForm from "./PopupWithForm";
 
-function ConfirmPopup({isOpen, onClose, onConfirmDelete, cardToDelete}) {
+function ConfirmPopup({isOpen, onClose, onConfirmDelete, cardToDelete, isLoading}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,6 +15,7 @@ function ConfirmPopup({isOpen, onClose, onConfirmDelete, cardToDelete}) {
           submitButtonText="Да"
           isOpen={isOpen}
           onSubmit={handleSubmit}
+          isLoading={isLoading}
         />
     );
 }

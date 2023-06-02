@@ -4,66 +4,68 @@ export class Api {
         this._headers = data.headers;
     }
 
+    _request(endpoint, option) {
+        return fetch(`${this._dataBase + endpoint}`, option).then(res => this._checkResponse(res));
+    }
+
     _checkResponse(res) {
         if(res.ok) {return res.json();}
             return Promise.reject(`Упс... Ошибка: ${res.status}`);
     }
 
     getUserInfo() {
-        return fetch(`${this._dataBase}users/me`, {headers: this._headers})
-        .then(res => this._checkResponse(res))
+        return this._request('users/me', {headers: this._headers});
     }
 
     getInitCard() {
-        return fetch(`${this._dataBase}cards`, {headers: this._headers}).then(res => this._checkResponse(res))
+        return this._request('cards', {headers: this._headers});
     }
 
     setUserInfo({name, job}) {
-        return fetch(`${this._dataBase}users/me`, {
+        return this._request('users/me', {
             method: 'PATCH',
-            headers: this._headers,
-            body: JSON.stringify({
-                name,
-                about: job
-            })
-        }).then(res => this._checkResponse(res))
+                headers: this._headers,
+                body: JSON.stringify({
+                    name,
+                    about: job
+                })
+        });
     }
 
     updateAvatar({avatar}) {
-        return fetch(`${this._dataBase}users/me/avatar`, {
+        return this._request('users/me/avatar', {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 avatar
             })
-        }).then(res => this._checkResponse(res))
+        })
 }
 
 
     addCard({title, link}) {
-        return fetch(`${this._dataBase}cards`, {
+        return this._request('cards', {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
                 name: title,
                 link
             })
-        }).then(res => this._checkResponse(res))
+        });
 }
 
     addLike(_id) {
-        return fetch(`${this._dataBase}cards/${_id}/likes`, {
+        return this._request(`cards/${_id}/likes`, {
             method: 'PUT',
             headers: this._headers,
-        }).then(res => this._checkResponse(res))
+        });
     }
     
     deleteLike(_id) {
-        return fetch(`${this._dataBase}cards/${_id}/likes`, {
+        return this._request(`cards/${_id}/likes`, {
             method: 'DELETE',
             headers: this._headers,
-        })
-        .then(res => this._checkResponse(res))
+        });
     }
 
     changeLikeCardStatus(_id, isLiked) {
@@ -71,11 +73,10 @@ export class Api {
     }
 
     removeCard(_id) {
-        return fetch(`${this._dataBase}cards/${_id}`, {
+        return this._request(`cards/${_id}`, {
             method: "DELETE",
             headers: this._headers
-         })
-         .then(res => this._checkResponse(res))
+        });
     }
 }
 
