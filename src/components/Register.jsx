@@ -1,22 +1,16 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
+import useFormValue from "../hooks/useFormValue";
 
 function Register({ onRegister, isLoading }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const {values, handleChange} = useFormValue();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister(password, email);
+    onRegister(
+      values.password,
+      values.email,
+    );
   };
 
   return (
@@ -30,8 +24,8 @@ function Register({ onRegister, isLoading }) {
           className="form__input form__input_name_email form__input_type_dark"
           placeholder="E-mail"
           required
-          value={email || ""}
-          onChange={handleChangeEmail}
+          value={values.email || ""}
+          onChange={handleChange}
         />
         <span className="form__input-error form__input-error_type_dark email-input-error"></span>
         <input
@@ -41,10 +35,10 @@ function Register({ onRegister, isLoading }) {
           className="form__input form__input_name_password-register form__input_type_dark"
           placeholder="Пароль"
           required
-          value={password || ""}
+          value={values.password || ""}
           minLength="5"
           maxLength="200"
-          onChange={handleChangePassword}
+          onChange={handleChange}
         />
         <span className="form__input-error form__input-error_type_dark password-input-error"></span>
         <button type="submit" className={`form__send form__send_type_dark hover_type_dark ${isLoading && 'form__send_disabled'}`}>

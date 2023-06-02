@@ -1,31 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import useFormValue from "../hooks/useFormValue";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const currentUser = useContext(CurrentUserContext);
+  const {values, handleChange, setValues} = useFormValue();
 
   useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
+    setValues({
+      name: currentUser.name,
+      description: currentUser.about
+    })
   }, [currentUser, isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdateUser({
-      name,
-      about: description,
+      name: values.name,
+      about: values.description
     });
-  };
-
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleChangeDescription = (e) => {
-    setDescription(e.target.value);
   };
 
   return (
@@ -47,21 +41,21 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         minLength="2"
         maxLength="40"
         required
-        value={name || ""}
-        onChange={handleChangeName}
+        value={values.name || ""}
+        onChange={handleChange}
       />
       <span className="form__input-error name-input-error"></span>
       <input
         id="job-input"
         type="text"
-        name="job"
+        name="description"
         className="form__input form__input_name_job"
         placeholder="О себе"
         minLength="2"
         maxLength="200"
         required
-        value={description || ""}
-        onChange={handleChangeDescription}
+        value={values.description || ""}
+        onChange={handleChange}
       />
       <span className="form__input-error job-input-error"></span>
     </PopupWithForm>
