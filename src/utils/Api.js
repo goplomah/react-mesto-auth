@@ -1,91 +1,94 @@
 export class Api {
-    constructor(data) {
-        this._dataBase = data.dataBase;
-        this._headers = data.headers;
+  constructor(data) {
+    this._dataBase = data.dataBase;
+    this._headers = data.headers;
+  }
+
+  _request(endpoint, option) {
+    return fetch(`${this._dataBase + endpoint}`, option).then((res) =>
+      this._checkResponse(res)
+    );
+  }
+
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
     }
+    return Promise.reject(`Упс... Ошибка: ${res.status}`);
+  }
 
-    _request(endpoint, option) {
-        return fetch(`${this._dataBase + endpoint}`, option).then(res => this._checkResponse(res));
-    }
+  getUserInfo() {
+    return this._request("users/me", { headers: this._headers });
+  }
 
-    _checkResponse(res) {
-        if(res.ok) {return res.json();}
-            return Promise.reject(`Упс... Ошибка: ${res.status}`);
-    }
+  getInitCard() {
+    return this._request("cards", { headers: this._headers });
+  }
 
-    getUserInfo() {
-        return this._request('users/me', {headers: this._headers});
-    }
+  setUserInfo({ name, job }) {
+    return this._request("users/me", {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        about: job,
+      }),
+    });
+  }
 
-    getInitCard() {
-        return this._request('cards', {headers: this._headers});
-    }
+  updateAvatar({ avatar }) {
+    return this._request("users/me/avatar", {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    });
+  }
 
-    setUserInfo({name, job}) {
-        return this._request('users/me', {
-            method: 'PATCH',
-                headers: this._headers,
-                body: JSON.stringify({
-                    name,
-                    about: job
-                })
-        });
-    }
+  addCard({ title, link }) {
+    return this._request("cards", {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: title,
+        link,
+      }),
+    });
+  }
 
-    updateAvatar({avatar}) {
-        return this._request('users/me/avatar', {
-            method: 'PATCH',
-            headers: this._headers,
-            body: JSON.stringify({
-                avatar
-            })
-        })
-}
+  addLike(_id) {
+    return this._request(`cards/${_id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    });
+  }
 
+  deleteLike(_id) {
+    return this._request(`cards/${_id}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
 
-    addCard({title, link}) {
-        return this._request('cards', {
-            method: 'POST',
-            headers: this._headers,
-            body: JSON.stringify({
-                name: title,
-                link
-            })
-        });
-}
+  changeLikeCardStatus(_id, isLiked) {
+    return isLiked ? this.addLike(_id) : this.deleteLike(_id);
+  }
 
-    addLike(_id) {
-        return this._request(`cards/${_id}/likes`, {
-            method: 'PUT',
-            headers: this._headers,
-        });
-    }
-    
-    deleteLike(_id) {
-        return this._request(`cards/${_id}/likes`, {
-            method: 'DELETE',
-            headers: this._headers,
-        });
-    }
-
-    changeLikeCardStatus(_id, isLiked) {
-        return isLiked ? this.addLike(_id) : this.deleteLike(_id)
-    }
-
-    removeCard(_id) {
-        return this._request(`cards/${_id}`, {
-            method: "DELETE",
-            headers: this._headers
-        });
-    }
+  removeCard(_id) {
+    return this._request(`cards/${_id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
 }
 
 const api = new Api({
-    dataBase: 'https://mesto.nomoreparties.co/v1/cohort-63/',
-    headers: {
-      authorization: "4cedf714-dd26-4078-b00f-7c3db0c68c43",
-      "Content-Type": "application/json"
-    }
-  });   
+  dataBase: "https://mesto.nomoreparties.co/v1/cohort-63/",
+  headers: {
+    authorization: "4cedf714-dd26-4078-b00f-7c3db0c68c43",
+    "Content-Type": "application/json",
+  },
+});
 
 export default api;

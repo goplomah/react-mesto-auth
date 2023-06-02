@@ -5,20 +5,20 @@ import useFormValue from "../hooks/useFormValue";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
   const currentUser = useContext(CurrentUserContext);
-  const {values, handleChange, setValues} = useFormValue();
+  const { values, handleChange, setValues } = useFormValue();
 
   useEffect(() => {
     setValues({
       name: currentUser.name,
-      description: currentUser.about
-    })
+      description: currentUser.about,
+    });
   }, [currentUser, isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdateUser({
       name: values.name,
-      about: values.description
+      about: values.description,
     });
   };
 

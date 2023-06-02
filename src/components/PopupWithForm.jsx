@@ -9,7 +9,7 @@ function PopupWithForm({
   submitButtonText,
   onClose,
   onSubmit,
-  isLoading
+  isLoading,
 }) {
   usePopupClose(isOpen, onClose);
   return (
@@ -22,10 +22,17 @@ function PopupWithForm({
           onClick={onClose}
         ></button>
         <h2 className="popup__title">{title}</h2>
-        <form className={`form form_type_${name}`} name={name} onSubmit={onSubmit}>
+        <form
+          className={`form form_type_${name}`}
+          name={name}
+          onSubmit={onSubmit}
+        >
           {children}
-          <button type="submit" className={`form__send ${isLoading && 'form__send_disabled'}`}>
-             {isLoading ? <Spinner /> : submitButtonText || "Сохранить"}
+          <button
+            type="submit"
+            className={`form__send ${isLoading && "form__send_disabled"}`}
+          >
+            {isLoading ? <Spinner /> : submitButtonText || "Сохранить"}
           </button>
         </form>
       </div>

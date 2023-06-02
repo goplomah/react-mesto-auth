@@ -30,7 +30,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isSuccessReg, setIsSuccessReg] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -97,7 +97,10 @@ function App() {
         setCards((state) => state.filter((c) => c._id !== card._id));
         closeAllPopups();
       })
-      .catch(handleCatchError).finally(() => {setIsLoading(false);});
+      .catch(handleCatchError)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleUpdateUser = ({ name, about }) => {
@@ -108,7 +111,10 @@ function App() {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch(handleCatchError).finally(() => {setIsLoading(false);});
+      .catch(handleCatchError)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleUpdateAvatar = ({ avatar }) => {
@@ -119,7 +125,10 @@ function App() {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch(handleCatchError).finally(() => {setIsLoading(false);});
+      .catch(handleCatchError)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleAddPlaceSubmit = ({ name, link }) => {
@@ -130,63 +139,79 @@ function App() {
         setCards([res, ...cards]);
         closeAllPopups();
       })
-      .catch(handleCatchError).finally(() => {setIsLoading(false);});
+      .catch(handleCatchError)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if(jwt) {
-      authorization.checkToken(jwt).then(res => {
-        if(res) {
-          setIsLoggedIn(true);
-          navigate("/");
-          setEmail(res.data.email);
-        }
-      }).catch(() => {
-        localStorage.removeItem('jwt');
-      })
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      authorization
+        .checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            navigate("/");
+            setEmail(res.data.email);
+          }
+        })
+        .catch(() => {
+          localStorage.removeItem("jwt");
+        });
     }
-  }, [isLoggedIn])
+  }, [isLoggedIn]);
 
   const handleRegister = (password, email) => {
     setIsLoading(true);
-    authorization.registration(password, email).then((res) => {
-      if(res) {
-      setIsSuccessReg(true);
-      navigate("/sign-in", {replace: true});
-    }
-    }).catch(() => {
-      setIsSuccessReg(false);
-    }).finally(() => {
-      setIsLoading(false);
-      setIsInfoTooltipOpen(true);
-    });
-  }
+    authorization
+      .registration(password, email)
+      .then((res) => {
+        if (res) {
+          setIsSuccessReg(true);
+          navigate("/sign-in", { replace: true });
+        }
+      })
+      .catch(() => {
+        setIsSuccessReg(false);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setIsInfoTooltipOpen(true);
+      });
+  };
 
   const handleLogin = (password, email) => {
     setIsLoading(true);
-    authorization.login(password, email).then(res => {
-      localStorage.setItem('jwt', res.token);
-      setIsLoggedIn(true);
-      navigate("/");
-    }).catch(err => {
-      setIsSuccessReg(false);
-      setIsInfoTooltipOpen(true);
-    }).finally(() => {setIsLoading(false);});
-  }
+    authorization
+      .login(password, email)
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setIsLoggedIn(true);
+        navigate("/");
+      })
+      .catch((err) => {
+        setIsSuccessReg(false);
+        setIsInfoTooltipOpen(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   const handleExit = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem('jwt');
-    navigate('/sign-in');
-    setEmail('');
-  }
+    localStorage.removeItem("jwt");
+    navigate("/sign-in");
+    setEmail("");
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root">
         <div className="page">
-          <Header onExit={handleExit} email={email}/>
+          <Header onExit={handleExit} email={email} />
           <Scroll />
           <Routes>
             <Route
@@ -206,8 +231,16 @@ function App() {
                 />
               }
             />
-            <Route path="/sign-up" element={<Register onRegister={handleRegister} isLoading={isLoading}/>} />
-            <Route path="/sign-in" element={<Login onLogin={handleLogin} isLoading={isLoading}/>} />
+            <Route
+              path="/sign-up"
+              element={
+                <Register onRegister={handleRegister} isLoading={isLoading} />
+              }
+            />
+            <Route
+              path="/sign-in"
+              element={<Login onLogin={handleLogin} isLoading={isLoading} />}
+            />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
           <Footer />

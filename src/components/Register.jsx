@@ -3,14 +3,11 @@ import Spinner from "./Spinner";
 import useFormValue from "../hooks/useFormValue";
 
 function Register({ onRegister, isLoading }) {
-  const {values, handleChange} = useFormValue();
+  const { values, handleChange } = useFormValue();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister(
-      values.password,
-      values.email,
-    );
+    onRegister(values.password, values.email);
   };
 
   return (
@@ -41,8 +38,13 @@ function Register({ onRegister, isLoading }) {
           onChange={handleChange}
         />
         <span className="form__input-error form__input-error_type_dark password-input-error"></span>
-        <button type="submit" className={`form__send form__send_type_dark hover_type_dark ${isLoading && 'form__send_disabled'}`}>
-        {isLoading ? <Spinner /> : 'Зарегистрироваться'}
+        <button
+          type="submit"
+          className={`form__send form__send_type_dark hover_type_dark ${
+            isLoading && "form__send_disabled"
+          }`}
+        >
+          {isLoading ? <Spinner /> : "Зарегистрироваться"}
         </button>
       </form>
       <p className="register__text">

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Card from "./Card.js";
-import {CurrentUserContext} from "../contexts/CurrentUserContext.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function Main({
   onEditProfile,
@@ -9,9 +9,8 @@ function Main({
   onCardClick,
   cards,
   onCardDelete,
-  onCardLike
+  onCardLike,
 }) {
-  
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -51,12 +50,12 @@ function Main({
       >
         <ul className="places__cards">
           {cards.map((card) => (
-            <Card 
-            key={card._id} 
-            card={card} 
-            onCardClick={onCardClick} 
-            onCardDelete={onCardDelete}
-            onCardLike={onCardLike}
+            <Card
+              key={card._id}
+              card={card}
+              onCardClick={onCardClick}
+              onCardDelete={onCardDelete}
+              onCardLike={onCardLike}
             />
           ))}
         </ul>
